@@ -16,7 +16,7 @@ A futuro se podria incluir:
 models/          # Modelos de dominio
 repositories/    # Capa de acceso de datos
 services/        # Logica de negocio
-routers/         # Endpoints
+endpoints/       # Endpoints del api
 
 ## Tecnologias
 
