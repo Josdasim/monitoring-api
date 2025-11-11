@@ -1,4 +1,4 @@
-from src.app.api.config.database import engine, Base
+from src.app.config.database import engine, Base
 from src.app.models.service import Service
 
 def init_database():
