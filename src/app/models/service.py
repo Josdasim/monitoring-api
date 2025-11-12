@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 import uuid
 
 from datetime import datetime
@@ -16,5 +17,8 @@ class Service(Base):
     created_at = Column(DateTime, default = datetime.now)
     updated_at = Column(DateTime, default = datetime.now, onupdate=datetime.now)
     
+
+    health_checks = relationship("HealthCheck", back_populates="service", cascade="all, delete-orphan")
+
     def __repr__(self):
         return f"<Service {self.service_name}>"
