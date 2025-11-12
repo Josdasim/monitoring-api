@@ -37,7 +37,7 @@ class HealthCheckResponse(BaseModel):
     class ConfigDict:
         from_attributes: True
 
-class ServiceHealthSumary(BaseModel):
+class ServiceHealthSummary(BaseModel):
     service_id: UUID
     service_name: str
     current_status: HealthStatus
