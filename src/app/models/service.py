@@ -1,9 +1,11 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
-from datetime import datetime
 
-class Service():
+from datetime import datetime
+from src.app.config.database import Base
+
+class Service(Base):
     __tablename__ = "services"
 
     service_id = Column(UUID(as_uuid=True), primary_key = True, default = uuid.uuid7)
