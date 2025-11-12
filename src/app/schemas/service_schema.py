@@ -9,7 +9,7 @@ class ServiceCreate(BaseModel):
     service_url: str
     check_interval: int = 300
 
-    class configDict:
+    class ConfigDict:
         json_schema_extra = {
             "example":{
                 "service_name": "My API",
@@ -29,5 +29,5 @@ class ServiceResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
 
-    class configDict:
+    class ConfigDict:
         from_attributes = True

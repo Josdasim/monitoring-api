@@ -1,5 +1,7 @@
 from src.app.config.database import engine, Base
 from src.app.models.service import Service
+from src.app.models.health_check import HealthCheck
+
 
 def init_database():
     """Crea todas las tablas en la base de datos"""
