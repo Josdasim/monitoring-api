@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from typing import List
 from uuid import UUID
 
 from src.app.config.database import get_db
@@ -17,7 +16,7 @@ def get_latest_check(service_id: UUID, db: Session = Depends(get_db)
     return HealthCheckService.get_latest_check(db, service_id)
 
 
-@router.get("/{service_id}/history", response_model=List[HealthCheckResponse])
+@router.get("/{service_id}/history", response_model=list[HealthCheckResponse])
 def get_check_history(service_id: UUID, limit: int = 50, db: Session = Depends(get_db)
 ):
     """Obtiene el historial de health checks."""
