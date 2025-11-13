@@ -34,7 +34,7 @@ class HealthCheckService:
         return HealthCheckRepository.get_history_by_service(db, service_id, limit)
     
     @staticmethod
-    def get_service_sumary(db:Session, service_id:UUID) -> ServiceHealthSummary:
+    def get_service_summary(db:Session, service_id:UUID) -> ServiceHealthSummary:
         """Genera un resumen con metricas calculadas"""
         service = ServiceRepository.get_by_id(db, service_id)
         if not service:

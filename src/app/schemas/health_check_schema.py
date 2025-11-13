@@ -26,7 +26,7 @@ class HealthCheckCreate(BaseModel):
             
             
 class HealthCheckResponse(BaseModel):
-    health_check: UUID
+    health_check_id: UUID
     service_id: UUID
     status: HealthStatus
     response_time_ms: float | None
