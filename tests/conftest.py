@@ -24,6 +24,7 @@ def db_engine():
     Base.metadata.create_all(bind=engine)
     yield engine
     Base.metadata.drop_all(bind=engine)
+    engine.dispose()
 
 
 @pytest.fixture(scope="function")
@@ -50,7 +51,7 @@ def client(db_session):
         try:
             yield db_session
         finally:
-            pass
+            db_session.close()
     
     app.dependency_overrides[get_db] = override_get_db
     
@@ -67,17 +68,4 @@ def sample_service_data():
         "service_name": "Test Service",
         "service_url": "https://example.com",
         "check_interval": 60
-    }
-
-
-@pytest.fixture
-def sample_health_check_data():
-    """Datos de ejemplo para crear un health check."""
-    from uuid import uuid7
-    return {
-        "service_id": uuid7(),
-        "status": "UP",
-        "response_time_ms": 150.5,
-        "status_code": "200",
-        "error_message": None
     }
