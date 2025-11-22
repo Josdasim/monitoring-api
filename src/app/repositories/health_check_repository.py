@@ -46,13 +46,14 @@ class HealthCheckRepository:
     @staticmethod
     def delete_old_checks(db: Session, service_id: UUID, keep_last:int = 1000):
         """Elimina checks antiguos, par matener los ultimos n"""
-        subquery = db.query(HealthCheck.service_id).filter(HealthCheck.service_id==service_id)\
-            .order_by(desc(HealthCheck.checked_at)).limit(keep_last).subquery()
+        subquery = db.query(HealthCheck.health_check_id).filter(HealthCheck.service_id==service_id)\
+            .order_by(desc(HealthCheck.checked_at)).limit(keep_last)
         
-        deleted = db.query(HealthCheck)\
+        to_deleted = db.query(HealthCheck)\
             .filter(HealthCheck.service_id == service_id,
-                    HealthCheck.health_check_id.not_in_(subquery))\
-            .delete(synchronize_session=False)
+                    HealthCheck.health_check_id.not_in(subquery))
         
+        deleted = to_deleted.delete(synchronize_session=False)
+
         db.commit()
         return deleted
