@@ -76,8 +76,8 @@ class HealthCheckService:
     @staticmethod
     def cleanup_old_checks(db:Session, service_id: UUID, keep_last:int = 1000):
         """Limpia checks antiguos con validaciones"""
-        if keep_last < 100:
-            keep_last = 100
+        if keep_last < 1:
+            keep_last = 1
         if keep_last > 10000:
             keep_last = 10000
 
