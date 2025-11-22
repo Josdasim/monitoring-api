@@ -50,7 +50,7 @@ class HealthCheckRunner:
                 service_id = service.service_id,
                 status = HealthStatus.TIMEOUT,
                 response_time_ms = None,
-                status_code = "Timeout",
+                code_response = "Timeout",
                 error_message = "Tiempo de espera superado..."
             )
             print(f"{service.service_name}: TIMEOUT")
@@ -61,7 +61,7 @@ class HealthCheckRunner:
                 service_id=service.service_id,
                 status=HealthStatus.ERROR,
                 response_time_ms=None,
-                status_code="Error",
+                code_response="Error",
                 error_message=str(e)[:500]
             )
             print(f"{service.service_name}: ERROR - {str(e)[:100]}")
